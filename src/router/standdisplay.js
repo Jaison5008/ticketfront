@@ -17,7 +17,7 @@
         
            display();
         
-    },[]) 
+    }) 
     const hi=()=>{ 
       navigator("/cartsignup")
     }
