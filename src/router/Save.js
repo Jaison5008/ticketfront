@@ -4,7 +4,7 @@ import {  useEffect, useState } from 'react'
 import axios  from 'axios'  
 import { Button ,Container ,Card, Col } from 'react-bootstrap';
 //import '../index.css';
-const url="http://localhost:5000";
+const url="https://ticketbackend-8ki0.onrender.com";
 
 const Save = ()=> {   
   const[datas,setData]=useState([]);  

@@ -6,7 +6,7 @@ import { toast } from 'react-toastify';
 import axios from "axios"; 
 //import { json } from 'react-router-dom';
 
- const url="http://localhost:5000";
+ const url="https://ticketbackend-8ki0.onrender.com";
  function Signup() { 
     
     const [team,setTeam]=useState(''); 

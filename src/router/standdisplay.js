@@ -6,7 +6,7 @@
  import { useParams } from 'react-router-dom';
  import { useNavigate } from 'react-router-dom'; 
  import Base from './Base';
- const url="http://localhost:5000";
+ const url="https://ticketbackend-8ki0.onrender.com";
 
  function Signup(props) {  
     const [dat ,setData]=useState([]);   

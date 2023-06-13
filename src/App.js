@@ -12,7 +12,7 @@ import Foot from "./router/Foot";
 import Conditions from "./router/Conditions"; 
 import Save from "./router/Save"
 import { useState } from "react";
-export const url="http://localhost:5000";
+export const url="https://ticketbackend-8ki0.onrender.com";
 function App() {   
   const [user,setUser]=useState([]) 
   const [num, setNum]=useState([]) 

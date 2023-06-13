@@ -5,7 +5,7 @@ import { toast } from 'react-toastify';
  import React, { useEffect, useState } from 'react'
  import axios from "axios"; 
  import {  useNavigate } from 'react-router-dom';
- const url="http://localhost:5000";
+ const url="https://ticketbackend-8ki0.onrender.com";
 
 
  function Signup(props) {  
