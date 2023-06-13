@@ -1,51 +1,68 @@
 import React, { useEffect, useState } from 'react'
 import Button from 'react-bootstrap/Button';
-import Form from 'react-bootstrap/Form';
+//import Form from 'react-bootstrap/Form';
 import { toast } from 'react-toastify'; 
 import axios from "axios";  
-import { useNavigate } from 'react-router-dom';
+import {  useNavigate } from 'react-router-dom';
+import Base from './Base';
  const url="http://localhost:5000";  
 
  
- function Signup() { 
+ function Signup() {  
+  
     const navi=useNavigate()
-    const [Ticketcount,setTicketcount]=useState('');  
-      const[id,setId]=useState(''); 
-      useEffect(()=>{
+    const [Ticketcount,setTicketcount]=useState(0);   
+  
+   const c= JSON.parse(sessionStorage.getItem('token'));  
+   const cc= JSON.parse(sessionStorage.getItem('tok')); 
+   console.log(c)
+   const Ids=c._id;
+    const team =c.team; 
+    const venue=c.venue; 
+    const stand=cc;
+    const[Id,setId]=useState()
+     console.log(Id)
+      
+      useEffect(()=>{ 
+      //  sessionStorage.setItem('mm',req.body._id)
    setId(sessionStorage.getItem('ss')) 
    
        },[] ) 
        
 const logged=async()=>{  
-    let payload={Ticketcount,id};
+    let payload={team,venue,stand,Ticketcount,Ids,Id}; 
+   
 try{  
     let res= await axios.post(`${url}/cart/cartpost`,payload)  
-   // setId(sessionStorage.getItem());
- navi('/');
-toast.success(res.data.msg);
+   
+    navi(`/save/${Id}`);
+toast.success(res.data.msg); 
+
 }catch(error) {
 toast.error({error:error});
 }
 }
 
-  return (
-    <Form> 
+  return (<Base thead=' Ticket' tstyle='headstyle'footer='foot' children={<div>
+    
+  
+    <h2>Team :{c.team}</h2> 
+    <h2>Venue:{c.venue}</h2>  
+    <h2>Id:{c._id}</h2>   
+    <h2>Stand:{cc}</h2> 
+<Button bg="dark" variant="dark" style={{padding:'5px'}} onClick={()=>setTicketcount(Ticketcount+1)}>+</Button>{(Ticketcount > 0)  ?(<h2>{Ticketcount}</h2>):<h2>0</h2>}<Button bg="dark" variant="dark" style={{padding:'5px'}} onClick={()=>setTicketcount(Ticketcount-1)}>-</Button>
+<div>
+<Button bg="dark" variant="dark" onClick={()=>logged()}>confirm</Button></div>
+</div>  }>
+    
+
+
       
-
-      <Form.Group className="mb-3" controlId="formBasicName">
-        <Form.Label>Ticketcount</Form.Label>
-        <Form.Control type="Name" placeholder="Enter Ticketcount" onChange={(e)=>setTicketcount(e.target.value)} />
-        
-      </Form.Group>
-
-
-      
-      <Button variant="primary" onClick={()=>logged()}>
-        Submit
-      </Button>
-    </Form>
+      </Base>
   )
 }
  
 
-export default Signup
+export default Signup 
+
+

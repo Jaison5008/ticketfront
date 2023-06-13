@@ -1,16 +1,16 @@
 import { toast } from 'react-toastify'; 
- import Table from 'react-bootstrap/Table'; 
- import Button from 'react-bootstrap/Button'; 
- 
+ import {Container ,Card,Col,Button} from 'react-bootstrap'; 
+ //import Button from 'react-bootstrap/Button'; 
+ import Base from './Base';
  import React, { useEffect, useState } from 'react'
  import axios from "axios"; 
- import { useNavigate } from 'react-router-dom';
+ import { json, useNavigate } from 'react-router-dom';
  const url="http://localhost:5000";
 
 
- function Signup() {  
-  const [data ,setData]=useState([]);  
-  // let token  =sessionStorage.getItem('token') 
+ function Signup(props) {  
+  const [data ,setData]=useState([]);   
+ 
     const navi=useNavigate()  
 
     useEffect(()=>{  
@@ -18,8 +18,11 @@ import { toast } from 'react-toastify';
          display();
       
   },[])   
-  const hi=(id)=>{ 
-    navi(`/standdisplay/${id}` )
+  const hi=(e)=>{   
+    const m= JSON.stringify(e)
+  sessionStorage.setItem('token',m);
+    props.add(e)
+    navi(`/standdisplay/${e._id}` )
   }
  
    const display=async()=>{   
@@ -34,21 +37,31 @@ import { toast } from 'react-toastify';
       toast.error("faild")
        }
     }
-      return (
-     <Table striped bordered hover>
-      
-      <tbody> 
-        {data.map((e,i)=>{
-       return <tr key={e._id}>
-          <td>{i+1}</td>
-          <td>{e.team}</td>
-          <td>{e.venue}</td>
-          <Button onClick={()=>{hi(e._id)}} >Book</Button>
-        </tr>
-      })}
-      </tbody>
-    </Table>
+      return ( <Base thead=' Match LIST' tstyle='headstyle'footer='foot' children={ 
+        <div className="App">   
+        {data.map((e,i)=>
+   <Container className='p-4'>  
+  <Col md="4">  
+  <Card>  
+  
+  
+  <Card.Body key={e._id}>   
+    <Card.Title >{e.team}</Card.Title>  
+    <Card.Text> {e.venue} 
+   
+    </Card.Text>  
+    <Button bg="dark" variant="dark" onClick={()=>{hi(e)}}>Book</Button>  
+  </Card.Body>  
+</Card>  
+    </Col>  
+</Container>)}  
+    </div>  
+   
+  
+
+
+
     
-  )
+        }></Base>)
 } 
 export default Signup;

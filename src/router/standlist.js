@@ -2,7 +2,8 @@ import React, { useState } from 'react'
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import { toast } from 'react-toastify'; 
-import axios from "axios";
+import axios from "axios"; 
+import Base from './Base';
  const url="http://localhost:5000";
  function Signup() { 
     
@@ -21,7 +22,7 @@ toast.error('wrr');
 }
 }
 
-  return (<>
+  return (<><Base thead=' stand  list' tstyle='headstyle'footer='foot' children={
     <Form> 
       
 
@@ -45,7 +46,7 @@ toast.error('wrr');
       <Button variant="primary" onClick={()=>logged()}>
         Submit
       </Button>
-    </Form></>
+    </Form>}></Base></>
   )
 }
  

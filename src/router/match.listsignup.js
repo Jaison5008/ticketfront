@@ -1,8 +1,11 @@
 import React, { useState } from 'react'
 import Button from 'react-bootstrap/Button';
-import Form from 'react-bootstrap/Form';
+import Form from 'react-bootstrap/Form'; 
+import Base from './Base';
 import { toast } from 'react-toastify'; 
-import axios from "axios";
+import axios from "axios"; 
+//import { json } from 'react-router-dom';
+
  const url="http://localhost:5000";
  function Signup() { 
     
@@ -14,14 +17,16 @@ const logged=async()=>{
     const payload={team,venue};
 
    let res= await axios.post(`${url}/match/matchpost`,payload)  
-   
+   console.log(res) 
+  
+ 
 toast.success(res.data.msg);
 }catch(error) {
 toast.error('wrr');
 }
 }
 
-  return (<>
+  return (<Base thead=' Match list' tstyle='headstyle'footer='foot' children={ 
     <Form> 
       
 
@@ -39,10 +44,10 @@ toast.error('wrr');
      
 
 
-      <Button variant="primary" onClick={()=>logged()}>
+      <Button bg="dark" variant="dark" onClick={()=>logged()}>
         Submit
       </Button>
-    </Form></>
+    </Form>}></Base>
   )
 }
  

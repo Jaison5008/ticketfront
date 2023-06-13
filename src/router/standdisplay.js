@@ -1,13 +1,14 @@
  import { toast } from 'react-toastify'; 
- import Table from 'react-bootstrap/Table'; 
- import Button from 'react-bootstrap/Button';
+ import {Container,Col,Card,Button} from 'react-bootstrap'; 
+ //import Button from 'react-bootstrap/Button';
  import React, { useEffect, useState } from 'react'
  import axios from "axios";  
  import { useParams } from 'react-router-dom';
- import { useNavigate } from 'react-router-dom';
+ import { useNavigate } from 'react-router-dom'; 
+ import Base from './Base';
  const url="http://localhost:5000";
 
- function Signup() {  
+ function Signup(props) {  
     const [dat ,setData]=useState([]);   
     const{id}=useParams();
     // let token  =sessionStorage.getItem('token') 
@@ -17,8 +18,11 @@
         
            display();
         
-    }) 
-    const hi=()=>{ 
+    },[]) 
+    const hi=(e)=>{  
+       props.add2 (e); 
+       const m= JSON.stringify(e)
+       sessionStorage.setItem('tok',m);
       navigator("/cartsignup")
     }
     
@@ -41,23 +45,47 @@
      
      
     
-     return (
-      <Table striped bordered hover>
-       
-       <tbody> 
-         
-        <tr key={dat._id}>
-           <td>{1}</td>
-           <td>{dat.stand1}</td> 
-           <Button onClick={()=>{hi()}}>Book</Button>
-           <td>{dat.stand2}</td>
-           <Button onClick={()=>{hi()}} >Book</Button>
-         </tr>
-       
-       </tbody>
-     </Table>
+     return (  <Base thead=' STANDS ' tstyle='headstyle'footer='foot' children={ 
+      <div className="App">   
+      
+ <Container className='p-4'>  
+<Col md="4">  
+<Card>  
+
+
+<Card.Body key={dat.id}>   
+  <Card.Title >{dat.stand1}</Card.Title>  
+  
+  <Button bg="dark" variant="dark" onClick={()=>{hi(dat.stand1)}}>Book</Button>  
+</Card.Body>  
+</Card>  
+  </Col>  
+</Container> 
+
+
+<Container className='p-4'>  
+<Col md="4">  
+<Card>  
+
+
+<Card.Body>   
+  <Card.Title >{dat.stand2}</Card.Title>  
+  
+  <Button  bg="dark" variant="dark" onClick={()=>{hi(dat.stand2)}}>Book</Button>  
+</Card.Body>  
+</Card>  
+  </Col>  
+</Container>
+  </div>  
+ 
+
+
+
+
+  
+      }></Base>)
      
-   )
+     
  } 
   export default Signup;
   

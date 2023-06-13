@@ -1,5 +1,6 @@
 import {useNavigate} from 'react-router-dom' 
- import React, { useState } from 'react'
+ import React, { useState } from 'react' 
+ import Base from './Base';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import { toast } from 'react-toastify'; 
@@ -26,7 +27,7 @@ toast.error('wrong ');
 }
 }
 
-  return (<>
+  return (<><Base thead=' SIGNUP' tstyle='headstyle'footer='foot' children={ 
     <Form> 
       
 
@@ -47,14 +48,15 @@ toast.error('wrong ');
         <Form.Label>phone</Form.Label>
         <Form.Control type="phone" placeholder="enter phone" onChange={(e)=>setPhone(e.target.value)} />
         
-      </Form.Group>
-      <Button variant="primary" onClick={()=>logged()}>
+      </Form.Group> 
+      <div style={{display:'flex',justifyContent:'center'}} >
+      <Button bg="dark" variant="dark" onClick={()=>logged()}>
         Submit
-      </Button>
-    </Form> 
+      </Button></div>
+    </Form> }></Base>
 
 
-<Button variant="primary" onClick={()=>{navi('/')}}>
+<Button  style={{margin:'5px'}} bg="dark" variant="dark" onClick={()=>{navi('/')}}>
         login 
       </Button></>
   )
