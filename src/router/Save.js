@@ -13,7 +13,7 @@ const Save = ()=> {
   useEffect(()=>{  
     
     dispalay()
-  },[]) 
+  }) 
     const  dispalay= async()=>{
     const res =  await axios.get(`${url}/cart/cartget/${Id}`);    
     console.log(res.data.msg)

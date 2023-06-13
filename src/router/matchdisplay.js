@@ -4,7 +4,7 @@ import { toast } from 'react-toastify';
  import Base from './Base';
  import React, { useEffect, useState } from 'react'
  import axios from "axios"; 
- import { json, useNavigate } from 'react-router-dom';
+ import {  useNavigate } from 'react-router-dom';
  const url="http://localhost:5000";
 
 
@@ -17,7 +17,7 @@ import { toast } from 'react-toastify';
       
          display();
       
-  },[])   
+  })   
   const hi=(e)=>{   
     const m= JSON.stringify(e)
   sessionStorage.setItem('token',m);

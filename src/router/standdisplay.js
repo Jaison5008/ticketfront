@@ -18,7 +18,7 @@
         
            display();
         
-    },[]) 
+    }) 
     const hi=(e)=>{  
        props.add2 (e); 
        const m= JSON.stringify(e)

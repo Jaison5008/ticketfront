@@ -6,7 +6,7 @@ export default function Base({thead ,tstyle,children ,footer}) {
 
     return(  
         <div> 
-        <div className={tstyle}> {thead}</div>
+        <div style={{justifyContent:'center'}} className={tstyle}>{thead}</div>
          <div> 
             {children}
          </div>
